@@ -7,6 +7,34 @@ from math import *
 
 global liens
 
+version="0.1.0-Beta"
+
+def codage(lettre, cle):
+    nombre = ord(lettre)
+    a=0
+    if nombre < 65 or nombre > 90:
+        a=a
+    elif nombre+cle > 90:
+        nombre = nombre+cle
+        nombre = nombre-26
+    elif nombre > 64:
+        nombre = nombre +cle
+    NLettre = chr(nombre)
+    return(NLettre)
+
+def decodage(lettre, cle):
+    nombre=ord(lettre)
+    a=0
+    if nombre <=64 or nombre >= 116:
+        a=a
+    elif nombre-cle<65:
+        nombre=nombre-cle
+        nombre = nombre + 26
+    elif nombre <=90:
+        nombre=nombre-cle
+    NLettre = chr(nombre)
+    return(NLettre)
+
 def Assistant():
     a=0
     while a!=1:
@@ -78,61 +106,6 @@ def Assistant():
                         else:
                             recherche+=listerep[i]+"+"
                     url="https://www.ecosia.org/search?q="+recherche
-                    webbrowser.open_new(url)
-                elif listerep[1] == "youtube":
-                    recherche=""
-                    for i in range(2,len(listerep)):
-                        if i==len(listerep)-1:
-                            recherche+=listerep[i]
-                        else:
-                            recherche+=listerep[i]+"+"
-                    url = "https://www.youtube.com/results?search_query="+recherche
-                    webbrowser.open_new(url)
-                elif listerep[1] == "duckduckgo":
-                    recherche=""
-                    for i in range(2,len(listerep)):
-                        if i==len(listerep)-1:
-                            recherche+=listerep[i]
-                        else:
-                            recherche+=listerep[i]+"+"
-                    url = "https://duckduckgo.com/?q="+recherche
-                    webbrowser.open_new(url)
-                elif listerep[1] == "bing":
-                    recherche=""
-                    for i in range(2,len(listerep)):
-                        if i==len(listerep)-1:
-                            recherche+=listerep[i]
-                        else:
-                            recherche+=listerep[i]+"+"
-                    url = "https://www.bing.com/search?q="+recherche
-                    webbrowser.open_new(url)
-                elif listerep[1] == "yahoo":
-                    recherche=""
-                    for i in range(2,len(listerep)):
-                        if i==len(listerep)-1:
-                            recherche+=listerep[i]
-                        else:
-                            recherche+=listerep[i]+"+"
-                    url = "https://fr.search.yahoo.com/search?p="+recherche
-                    webbrowser.open_new(url)
-                else:
-                    recherche=""
-                    for i in range(1,len(listerep)):
-                        if i==len(listerep)-1:
-                            recherche+=listerep[i]
-                        else:
-                            recherche+=listerep[i]+"+"
-                    url = "https://www.google.fr/?gws_rd=ssl#q="+recherche
-                    webbrowser.open_new(url)
-            elif listerep[0]=="*recherche":
-                if listerep[1] == "google":
-                    recherche=""
-                    for i in range(2,len(listerep)):
-                        if i==len(listerep)-1:
-                            recherche+=listerep[i]
-                        else:
-                            recherche+=listerep[i]+"+"
-                    url = "https://www.google.fr/?gws_rd=ssl#q="+recherche
                     webbrowser.open_new(url)
                 elif listerep[1] == "youtube":
                     recherche=""
@@ -297,6 +270,87 @@ def Assistant():
                     print("- create <nom> <url> : pour créer un raccourci")
                     print("- delete <nom> : pour supprimer un raccourci")
                     print("")
+                    input()
+            elif listerep[0]=="crypter":
+                try:
+                    cle=int(listerep[1])
+                    if cle<1 or cle>26:
+                        0/0
+                except:
+                    print("ERREUR : Faites 'crypter <clé> <texte>' avec 0<clé<27")
+                    print("")
+                else:
+                    texte=""
+                    for i in listerep:
+                        if i == listerep[0] or i == listerep[1]:
+                            pass
+                        elif i == listerep[len(listerep)-1]:
+                            texte+=i
+                        else:
+                            texte+=i+" "
+                    if texte==" ":
+                        print("ERREUR : Faites 'crypter <clé> <texte>' avec 0<clé<27")
+                        print("")
+                    else:
+                        result=""
+                        for i in texte.upper():
+                            result+=codage(i, cle)
+                        print(result)
+                        print("")
+                        input()
+            elif listerep[0]=="decrypter":
+                try:
+                    cle=int(listerep[1])
+                    if cle<1 or cle>26:
+                        0/0
+                except:
+                    print("ERREUR : Faites 'decrypter <clé> <texte>' avec 0<clé<27")
+                    print("")
+                else:
+                    texte=""
+                    for i in listerep:
+                        if i == listerep[0] or i == listerep[1]:
+                            pass
+                        elif i == listerep[len(listerep)-1]:
+                            texte+=i
+                        else:
+                            texte+=i+" "
+                    if texte==" ":
+                        print("ERREUR : Faites 'crypter <clé> <texte>' avec 0<clé<27")
+                        print("")
+                    else:
+                        result=""
+                        for i in texte.upper():
+                            result+=decodage(i, cle)
+                        print(result)
+                        print("")
+                        input()
+            elif listerep[0]=="decrypter*":
+                texte=""
+                for i in listerep:
+                    if i == listerep[0]:
+                        pass
+                    elif i == listerep[len(listerep)-1]:
+                        texte+=i
+                    else:
+                        texte+=i+" "
+                if texte==" ":
+                    print("ERREUR : Faites 'crypter <clé> <texte>' avec 0<clé<27")
+                    print("")
+                else:
+                    for cle in range(1,27):
+                        result=""
+                        for i in texte.upper():
+                            result+=codage(i, cle)
+                        print(result)
+                    print("")
+                    input()
+            elif listerep[0]=="info":
+                print("Salut, comme tu le sais, je suis Zolo !")
+                print("Je suis un assistant qui peut faire plein de choses (fait 'aide' pour avoir la liste")
+                print("Je suis en version",version,"et j'ai été crée par LavaPower")
+                print("")
+                input()
             elif listerep[0]=="reset":
                 print("\nJe vais me reset. Si tel est votre désir.")
                 input()
@@ -310,10 +364,13 @@ def Assistant():
                 print("- calcul <calcul> : Fait un calcul")
                 print("- imc <poids> <taille> : calcul l'imc")
                 print("- recherche [<moteur>] <recherche> : Fait une cherche sur un moteur")
-                print("- *recherche [<moteur>] <recherche> : Fait une cherche sur un moteur en navigation privée")
                 print("- meteo <ville> <code postal> : Donne la météo d'une ville (a écrire sans majuscule ni accent)")
                 print("- ouvrir <lien programme> : Ouvrir un programme à partir d'un lien")
                 print("- raccourci <create|delete|list|open> [<nom>] [<url>] : Commande pour gérer les raccourcis")
+                print("- crypter <clé> <texte> : Crypter un texte avec une clé (de 1 à 26)")
+                print("- decrypter <clé> <texte> : Décrypter un texte avec une clé (de 1 à 26)")
+                print("- decrypter* <texte> : Décrypter un texte sans clé")
+                print("- info : Toutes les informations sur Zolo")
                 print("- reset : Reset Zolo")
                 print("- quitter : Quitter Zolo")
                 print("- aide : Montre cette aide")
