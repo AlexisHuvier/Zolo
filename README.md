@@ -8,10 +8,13 @@ Liste des "commandes" (Légende : 'mot' = option obligatoire | ''mot'' option fa
 - calcul 'calcul' : Fait un calcul (ATTENTION : Utilise une syntaxe ordinateur exemple : ** pour puissance)
 - imc 'poids' 'taille' : calcul l'imc
 - recherche ''moteur'' 'recherche' : Fait une cherche sur un moteur (liste en haut)
-- *recherche ''moteur'' 'recherche' : Fait une cherche sur un moteur en navigation privée (PAS ENCORE FONCTIONNEL)
 - meteo 'ville' 'code postal' : Donne la météo d'une ville (a écrire sans majuscule ni accent)
 - ouvrir 'lien programme' : Ouvrir un programme à partir d'un lien
 - raccourci 'create|delete|list|open' ''nom'' ''url'' : Commande pour gérer les raccourcis
+- crypter <clé> <texte> : Crypter un texte avec une clé (de 1 à 26)
+- decrypter <clé> <texte> : Décrypter un texte avec une clé (de 1 à 26)
+- decrypter* <texte> : Décrypter un texte sans clé              
+- info :  Toutes les informations sur Zolo
 - reset : Reset Zolo (Reset la config : nom d'utilisateur et mot de passe)
 - quitter : Quitter Zolo
 - aide : Montre cette aide
