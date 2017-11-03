@@ -8,7 +8,7 @@ except IOError:
     print("Bonjour, je suis Zolo.")
     print("Apparemment, je ne vous connais pas. \nIl me faudrait quelques informations.")
     nom=input("Tout d'abord votre nom : ")
-    mdp=getpass.getpass.getpass("Puis votre mot de passe (pour plus de sécurité) : ")
+    mdp=getpass.getpass("Puis votre mot de passe (pour plus de sécurité) : ")
     mon_fichier = open("config.txt", "w")
     mon_fichier.write(nom+"\n"+str(hashlib.md5(mdp.encode('utf8')).hexdigest()))
     mon_fichier.close()
