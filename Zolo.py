@@ -1,3 +1,4 @@
+import os, getpass, hashlib
 from Zolo_main import *
 
 try:
@@ -7,7 +8,7 @@ except IOError:
     print("Bonjour, je suis Zolo.")
     print("Apparemment, je ne vous connais pas. \nIl me faudrait quelques informations.")
     nom=input("Tout d'abord votre nom : ")
-    mdp=getpass("Puis votre mot de passe (pour plus de sécurité) : ")
+    mdp=getpass.getpass.getpass("Puis votre mot de passe (pour plus de sécurité) : ")
     mon_fichier = open("config.txt", "w")
     mon_fichier.write(nom+"\n"+str(hashlib.md5(mdp.encode('utf8')).hexdigest()))
     mon_fichier.close()
@@ -21,14 +22,14 @@ else:
     print("Bonjour "+contenu[0])
     a=0
     while a!=1:
-        mdp=getpass("Pour plus de sécurité, il faudrait votre mot de passe : ")
+        mdp=getpass.getpass("Pour plus de sécurité, il faudrait votre mot de passe : ")
         if str(hashlib.md5(mdp.encode('utf8')).hexdigest())==contenu[1]:
             a=1
             print("\nMot de passe accepté !")
         else:
             print("\nMauvais mot de passe !\n")
     input()
-    Assistant()
+    assistant()
     os.system("cls")
     print("Au revoir, "+contenu[0])
     input()
