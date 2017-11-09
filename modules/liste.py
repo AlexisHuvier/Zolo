@@ -4,14 +4,14 @@ class Liste:
         print("Vous pouvez lister ces objets :")
         print("- liste moteur")
         print("")
-        return 0
+        return 0, "Voici la liste des commandes pour le module 'liste'"
         
     def moteur():
         print("Liste des moteurs :")
         for i in moteurs:
             print("-",i)
         print("")
-        return 0
+        return 0, "Voici la liste des moteurs"
 
     def handle(self,args):
         test=args.split(" ")
@@ -21,14 +21,14 @@ class Liste:
                 return eval("self."+method[0]+"()")
             except:
                 print("Je n'ai pas compris votre demande")
-                return 0
+                return 0, "Je n'ai pas compris votre demande"
         else:
-            method,args=args.split(" ",1)
+            method,arg=args.split(" ",1)
             try:
-                return eval("self."+method+"("+args+")")
+                return eval("self."+method+"("+arg+")")
             except:
                 print("Je n'ai pas compris votre demande")
-                return 0
+                return 0, "Je n'ai pas compris votre demande"
 
 moteurs=["google","youtube","duckduckgo","bing","yahoo","ecosia"]
 prefix="liste"

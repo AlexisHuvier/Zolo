@@ -1,4 +1,5 @@
 import os
+from Zolo_function import *
 
 LML={}
 GLOBALS, LOCALS = globals(), locals()
@@ -33,6 +34,7 @@ def assistant():
     unimported = set(imported) ^ set(libs)
     if unimported:
         print("Could not import {}".format(", ".join(list(unimported))))
+        play("ATTENTION ! Des modules ont été mal importés : "+format(", ".join(list(unimported))))
     for m in imported:
         last = m.split('.')[-1]
         _exec("LML[{mod}.{last}.prefix] = {mod}.{last}.moduleInstance".format(mod=m, last=last))
@@ -40,6 +42,7 @@ def assistant():
     a=0
     while a!=1:
         print("Que puis-je faire pour vous ?")
+        play("Que puis-je faire pour vous ?")
         rep=input()
         print("")
         test=rep.split(" ")
@@ -47,9 +50,12 @@ def assistant():
             rep+=" help"
         prefix,args=rep.split(" ",1)
         if prefix in LML:
-            a=LML.get(prefix).handle(LML.get(prefix),args)
+            a, text=LML.get(prefix).handle(LML.get(prefix),args)
+            if text != "":
+                play(text)
             print("")
         else:
             print("Je n'ai pas compris votre demande")
+            play("Je n'ai pas compris votre demande")
             print("")
-    
+
