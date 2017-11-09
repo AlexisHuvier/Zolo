@@ -1,8 +1,6 @@
 # Zolo
 Assistant vituel Python sous format console
 
-### **ATTENTION LE WIKI N'EST PLUS A JOUR. IL NE FONCTIONNE QUE POUR LA 1.X.X**
-
 ## Dépendances (tous les modules sont installables via pip)
 - Python 3.6
 - getpass
@@ -21,4 +19,4 @@ Assistant vituel Python sous format console
 - Gestion de compte (pour l'instant unique)
 - Hashage du mot de passe (vu qu'il est visible dans le fichier config)
 - Possibilité d'ajouter ses propres modules (Tuto fait dans l'onglet wiki)
-- Synthèse vocal
+- Synthèse vocal **ATTENTION, Zolo est un peu sensible avec ceci. Attendez qu'elle est fini sa phrase pour continuer l'utilisation**
