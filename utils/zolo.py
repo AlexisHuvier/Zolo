@@ -1,11 +1,14 @@
 import json
 from os import listdir, path
 from utils.module import Module
+from utils.config import Config
 
 class Zolo:
     def __init__(self):
         self.modules = []
         self.launched = False
+        self.config = Config.load()
+        self.config.save()
 
         for i in listdir("modules"):
             if path.exists(f"modules/{i}/info.json"):
