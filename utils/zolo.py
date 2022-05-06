@@ -5,11 +5,15 @@ from utils.config import Config
 
 class Zolo:
     def __init__(self):
+        print("[Zolo] Initialisation de Zolo...")
         self.modules = []
         self.launched = False
+        print("[Zolo] Chargement de la configuration...")
         self.config = Config.load()
         self.config.save()
+        print("[Zolo] Configuration chargée")
 
+        print("[Zolo] Chargement des modules...")
         for i in listdir("modules"):
             if path.exists(f"modules/{i}/info.json"):
                 self.modules.append(Module(**json.loads(open(f"modules/{i}/info.json").read())))
@@ -17,7 +21,11 @@ class Zolo:
                 print(f"[ERREUR] Le module {i} n'a pas de fichier info.json")
 
         for i in self.modules:
+            print(f"[Zolo] Module {i.name} chargé")
             i.commands = [i for i in dir(i.moduleImport) if not i.startswith("_")]
+
+        print("[Zolo] Modules chargés")
+        print("[Zolo] Zolo lancé")
 
     def desactive_module(self, module):
         if module not in self.config.disabled_modules:
@@ -40,7 +48,7 @@ class Zolo:
     def launch(self):
         self.launched = True
         while self.launched:
-            rep = input("[Zolo] Entrez votre commande : ")
+            rep = input("\n[Zolo] Entrez votre commande : ")
             words = rep.split(" ")
             if len(words) != 0:
                 module = self.get_module(words[0])
