@@ -19,13 +19,23 @@ class Zolo:
         for i in self.modules:
             i.commands = [i for i in dir(i.moduleImport) if not i.startswith("_")]
 
+    def desactive_module(self, module):
+        if module not in self.config.disabled_modules:
+            self.config.disabled_modules.append(module)
+        self.config.save()
+    
+    def active_module(self, module):
+        if module in self.config.disabled_modules:
+            self.config.disabled_modules.remove(module)
+        self.config.save()
+
+    def stop(self):
+        self.launched = False
+
     def get_module(self, prefix):
         for i in self.modules:
             if i.prefix == prefix:
                 return i
-
-    def stop(self):
-        self.launched = False
 
     def launch(self):
         self.launched = True
@@ -36,6 +46,8 @@ class Zolo:
                 module = self.get_module(words[0])
                 if module is None:
                     print("[ERREUR] Préfixe inconnu")
+                elif module.name in self.config.disabled_modules:
+                    print("[Zolo] Module désactivé")
                 else:
                     if len(words) == 1:
                         print(f"[Zolo] Les commandes du module {module.name} sont :")
