@@ -64,8 +64,8 @@ class Zolo:
                     else:
                         if words[1] in module.commands:
                             if len(words) == 2:
-                                getattr(module.moduleImport, words[1])(self, module)
+                                getattr(module.moduleImport, words[1])(self, module, [])
                             else:
-                                getattr(module.moduleImport, words[1])(self, module, *words[2:])
+                                getattr(module.moduleImport, words[1])(self, module, words[2:])
                         else:
                             print("[ERREUR] Commande inconnue")
