@@ -1,3 +1,4 @@
+import importlib
 import json
 from os import listdir, path
 from utils.module import Module
@@ -30,6 +31,48 @@ class Zolo:
 
         print("[Zolo] Modules chargés")
         print("[Zolo] Zolo lancé")
+        
+    def has_module(self, module):
+        """
+        Return if module is loaded
+
+        Args:
+            module (string): Name of module
+
+        Returns:
+            bool: True if module is loaded
+        """
+        return module in [i.name for i in self.modules]
+    
+    def load_module(self, module):
+        """
+        Load a module
+
+        Args:
+            module (string): Name of module
+        """
+        if path.exists(f"modules/{module}/info.json"):
+            module = Module(**json.loads(open(f"modules/{module}/info.json").read()))
+            self.modules.append(module)
+            module.commands = [i for i in dir(module.moduleImport) if not i.startswith("_")]
+            return True
+        else:
+            return False
+        
+    def reload_module(self, module):
+        """
+        Reload a module
+
+        Args:
+            module (string): Name of module
+        """
+        for i in self.modules:
+            if i.name == module:
+                self.modules.remove(i)
+                new = Module(**json.loads(open(f"modules/{module}/info.json").read()), reload=True)
+                self.modules.append(new)
+                new.commands = [i for i in dir(new.moduleImport) if not i.startswith("_")]
+                break
 
     def desactive_module(self, module):
         """

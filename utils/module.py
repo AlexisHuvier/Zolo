@@ -2,7 +2,7 @@ import importlib
 
 
 class Module:
-    def __init__(self, name, author, prefix, version, module):
+    def __init__(self, name, author, prefix, version, module, reload = False):
         """
         Create module
 
@@ -19,6 +19,8 @@ class Module:
         self.version = version
         self.module = module
         self.commands = []
-
+        
         temp = importlib.import_module(f"modules.{self.name}.module")
+        if reload:
+            importlib.reload(temp)
         self.moduleImport = eval(f"temp.{self.module}")
