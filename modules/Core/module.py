@@ -31,8 +31,11 @@ class Core:
             args (list(string)): List of arguments of command
         """
         if args:
-            zolo.desactive_module(args[0])
-            print(f"[Core] Module {args[0]} désactivé")
+            if zolo.has_module(args[0]):
+                zolo.desactive_module(args[0])
+                print(f"[Core] Module {args[0]} désactivé")
+            else:
+                print("[ERREUR] Module inconnu")
         else:
             print("[ERREUR] Syntaxe : core dismodule <module>")
 
@@ -46,8 +49,11 @@ class Core:
             args (list(string)): List of arguments of command
         """
         if args:
-            zolo.active_module(args[0])
-            print(f"[Core] Module {args[0]} activé")
+            if zolo.has_module(args[0]):
+                zolo.active_module(args[0])
+                print(f"[Core] Module {args[0]} activé")
+            else:
+                print("[ERREUR] Module inconnu")
         else:
             print("[ERREUR] Syntaxe : core actmodule <module>")
 
