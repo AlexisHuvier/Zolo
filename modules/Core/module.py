@@ -72,3 +72,56 @@ class Core:
                 print(f"[Core] - {i.name} (désactivé)")
             else:
                 print(f"[Core] - {i.name}")
+                
+    def load(zolo, module, args):
+        """
+        Load a module
+
+        Args:
+            zolo (Zolo): Zolo
+            module (Module): Current Module
+            args (list(string)): List of arguments of command
+        """
+        if args:
+            if zolo.has_module(args[0]):
+                print("[ERREUR] Module déjà chargé")
+            else:
+                if zolo.load_module(args[0]):
+                    print(f"[Core] Module {args[0]} chargé")
+                else:
+                    print(f"[ERREUR] Le module {args[0]} n'a pas de fichier info.json")
+        else:
+            print("[ERREUR] Syntaxe : core load <module>")
+    
+    def reload(zolo, module, args):
+        """
+        Reload a module
+
+        Args:
+            zolo (Zolo): Zolo
+            module (Module): Current Module
+            args (list(string)): List of arguments of command
+        """
+        if args:
+            if zolo.has_module(args[0]):
+                zolo.reload_module(args[0])
+                print(f"[Core] Module {args[0]} rechargé")
+            else:
+                print("[ERREUR] Module inconnu")
+        else:
+            print("[ERREUR] Syntaxe : core reload <module>")
+            
+    def reloadall(zolo, module, args):
+        """
+        Reload all modules
+
+        Args:
+            zolo (Zolo): Zolo
+            module (Module): Current Module
+            args (list(string)): List of arguments of command
+        """
+        print("[Core] Rechargement de tous les modules...")
+        for i in zolo.modules:
+            zolo.reload_module(i)
+            print(f"[Core] Module {i.name} rechargé")
+        print("[Core] Modules rechargés")
