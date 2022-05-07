@@ -3,8 +3,12 @@ from os import listdir, path
 from utils.module import Module
 from utils.config import Config
 
+
 class Zolo:
     def __init__(self):
+        """
+        Create Zolo
+        """
         print("[Zolo] Initialisation de Zolo...")
         self.modules = []
         self.launched = False
@@ -28,32 +32,59 @@ class Zolo:
         print("[Zolo] Zolo lancé")
 
     def desactive_module(self, module):
+        """
+        Desactivate a module
+
+        Args:
+            module (string): Name of module
+        """
         if module not in self.config.disabled_modules:
             self.config.disabled_modules.append(module)
         self.config.save()
-    
+
     def active_module(self, module):
+        """
+        Activate a module
+
+        Args:
+            module (string): Name of module
+        """
         if module in self.config.disabled_modules:
             self.config.disabled_modules.remove(module)
         self.config.save()
 
     def stop(self):
+        """
+        Stop Zolo
+        """
         self.launched = False
 
     def get_module(self, prefix):
+        """
+        Get module from prefix
+
+        Args:
+            prefix (string): Prefix
+
+        Returns:
+            Module: Module or None
+        """
         for i in self.modules:
             if i.prefix == prefix:
                 return i
 
     def launch(self):
+        """
+        Launch Zolo
+        """
         self.launched = True
         while self.launched:
             rep = input("\n[Zolo] Entrez votre commande : ")
             words = rep.split(" ")
-            if len(words) != 0:
+            if words:
                 module = self.get_module(words[0])
                 if module is None:
-                    print("[ERREUR] Préfixe inconnu")
+                    print("[ERREUR] Module inconnu")
                 elif module.name in self.config.disabled_modules:
                     print("[Zolo] Module désactivé")
                 else:

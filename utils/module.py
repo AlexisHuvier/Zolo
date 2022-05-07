@@ -1,7 +1,18 @@
 import importlib
 
+
 class Module:
     def __init__(self, name, author, prefix, version, module):
+        """
+        Create module
+
+        Args:
+            name (string): Name of module
+            author (string): Author of module
+            prefix (string): Prefix of module
+            version (string): Version of module
+            module (string): Name of Class of module
+        """
         self.name = name
         self.author = author
         self.prefix = prefix
