@@ -2,14 +2,8 @@
 
 Assistant vituel Python sous format console
 
-## Dépendances (tous les modules sont installables via pip)
+## Liste des modules
 
-- X
-
-## Liste des modules créés de base
-
-- *Coming Soon*
-  
-## Autres fonctionnalités
-
-- *Coming Soon*
+- Core : Gestion de base de Zolo (core) - Pas de dépendances
+- Math : Calcul mathématiques (math) - Pas de dépendances
+- YouTube : Statistiques et recherche youtube (youtube) - Nécessite googleapiclient
