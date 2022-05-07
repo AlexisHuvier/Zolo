@@ -122,7 +122,7 @@ class Zolo:
         """
         self.launched = True
         while self.launched:
-            rep = input("\n[Zolo] Entrez votre commande : ")
+            rep = input("\n[Zolo] >>> ")
             words = rep.split(" ")
             if words:
                 module = self.get_module(words[0])
