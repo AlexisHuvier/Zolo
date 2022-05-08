@@ -1,0 +1,7 @@
+{
+    "name": "Todo",
+    "author": "LavaPower",
+    "prefix": "todo",
+    "version": "1.0.0",
+    "module": "Todo"
+}
