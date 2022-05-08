@@ -1,6 +1,6 @@
-import os
 from re import sub
 import subprocess
+import os
 
 
 class Utilities:
@@ -56,6 +56,21 @@ class Other:
             args (list(string)): List of arguments of command
         """
         print(f"[Other] Version {module.version}")
+        
+    def open(zolo, module, args):
+        """
+        Open Program
+
+        Args:
+            zolo (Zolo): Zolo
+            module (Module): Current Module
+            args (list(string)): List of arguments of command
+        """
+        if args:
+            print(f"[Other] Ouverture de {args[0]}")
+            os.popen(" ".join(args))
+        else:
+            print("[ERREUR] Syntaxe : other open <program>")
         
     def ping(zolo, module, args):
         """
