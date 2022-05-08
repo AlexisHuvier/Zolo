@@ -42,7 +42,7 @@ class Zolo:
             rep = input("\n[Zolo] >>> ")
             words = rep.split(" ")
             if words:
-                module = self.get_module(words[0])
+                module = self.api.get_module(words[0])
                 if module is None:
                     print("[ERREUR] Module inconnu")
                 elif module.name in self.config.disabled_modules:
