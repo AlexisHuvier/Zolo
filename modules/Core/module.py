@@ -67,8 +67,8 @@ class Core:
             args (list(string)): List of arguments of command
         """
         print("[Core] Liste des modules :")
-        for i in zolo.modules:
-            if i.name in zolo.config.disabled_modules:
+        for i in zolo.get_all_modules():
+            if i.name in zolo.get_config().disabled_modules:
                 print(f"[Core] - {i.name} (désactivé)")
             else:
                 print(f"[Core] - {i.name}")
@@ -121,7 +121,7 @@ class Core:
             args (list(string)): List of arguments of command
         """
         print("[Core] Rechargement de tous les modules...")
-        for i in zolo.modules:
+        for i in zolo.get_all_modules():
             zolo.reload_module(i)
             print(f"[Core] Module {i.name} rechargé")
         print("[Core] Modules rechargés")

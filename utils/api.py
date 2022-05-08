@@ -7,6 +7,12 @@ class API:
     def __init__(self, zolo):
         self.__zolo = zolo
         
+    def get_config(self):
+        """
+        Get config
+        """
+        return self.__zolo.config
+        
     def has_module(self, module):
         """
         Return if module is loaded
@@ -90,3 +96,9 @@ class API:
         for i in self.__zolo.modules:
             if i.prefix == prefix:
                 return i
+    
+    def get_all_modules(self):
+        """
+        Get all modules
+        """
+        return self.__zolo.modules
