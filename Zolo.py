@@ -3,8 +3,7 @@ import os
 
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
-if os.name == "nt":
-    os.system("title Zolo")
+os.system("title Zolo")
 
 z = Zolo()
 z.launch()
