@@ -23,7 +23,7 @@ class Math:
             args (list(string)): List of arguments of command
         """
         try:
-            print(f"[Math] {eval(args[0])}")
+            print(f"[Math] {eval(' '.join(args))}")
         except Exception as e:
             print(f"[ERREUR] {e}")
 
