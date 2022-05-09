@@ -1,3 +1,6 @@
+import os
+
+
 class Core:
     def info(zolo, module, args):
         """
@@ -125,3 +128,14 @@ class Core:
             zolo.reload_module(i)
             print(f"[Core] Module {i.name} rechargé")
         print("[Core] Modules rechargés")
+        
+    def clear(zolo, module, args):
+        """
+        Clear terminal zolo
+
+        Args:
+            zolo (Zolo): Zolo
+            module (Module): Current Module
+            args (list(string)): List of arguments of command
+        """
+        os.system("cls")
