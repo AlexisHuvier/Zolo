@@ -19,7 +19,7 @@ class YouTube:
             args (list(string)): List of arguments of command
         """
         print(f"[YouTube] Version {module.version}")
-        print(f"[YouTube] API Key : {YouTube.api if YouTube.api else 'Aucune'}")
+        print(f"[YouTube] API Key : {YouTube.api or 'Aucune'}")
         
     def searchchannel(self, zolo, module, args):
         """
@@ -31,13 +31,7 @@ class YouTube:
             args (list(string)): List of arguments of command
         """
         if YouTube.youtube:
-            response = YouTube.youtube.search().list(
-                part="id,snippet",
-                type='channel',
-                q=" ".join(args),
-                maxResults=5
-            ).execute()
-            if response:
+            if response := YouTube.youtube.search().list(part="id,snippet", type='channel', q=" ".join(args), maxResults=5).execute():
                 print("[YouTube] Résultats de la recherche :")
                 for i, item in enumerate(response['items'], 1):
                     print(f"          {i}. {item.get('snippet').get('channelTitle')} - {item.get('id').get('channelId')}")
@@ -59,13 +53,7 @@ class YouTube:
             args (list(string)): List of arguments of command
         """
         if YouTube.youtube:
-            response = YouTube.youtube.search().list(
-                part="id,snippet",
-                type='video',
-                q=" ".join(args),
-                maxResults=5
-            ).execute()
-            if response:
+            if response := YouTube.youtube.search().list(part="id,snippet", type='video', q=" ".join(args), maxResults=5).execute():
                 print("[YouTube] Résultats de la recherche :")
                 for i, item in enumerate(response['items'], 1):
                     print(f"          {i}. {item.get('snippet').get('title')} ({item.get('snippet').get('channelTitle')}) - {item.get('id').get('videoId')}")
@@ -87,13 +75,7 @@ class YouTube:
             args (list(string)): List of arguments of command
         """
         if YouTube.youtube:
-            response = YouTube.youtube.videos().list(
-                part="statistics,contentDetails",
-                id=args[0],
-                fields="items(statistics," + \
-                            "contentDetails(duration))"
-            ).execute()
-            if response:
+            if response := YouTube.youtube.videos().list(part="statistics,contentDetails", id=args[0], fields="items(statistics," + "contentDetails(duration))").execute():
                 print("[YouTube] Voici les statistiques :")
                 print("          Durée :", response["items"][0]["contentDetails"]["duration"])
                 print("          Nombre de vues :", response["items"][0]["statistics"]["viewCount"])

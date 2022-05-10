@@ -88,11 +88,10 @@ class Core:
         if args:
             if zolo.has_module(args[0]):
                 print("[ERREUR] Module déjà chargé")
+            elif zolo.load_module(args[0]):
+                print(f"[Core] Module {args[0]} chargé")
             else:
-                if zolo.load_module(args[0]):
-                    print(f"[Core] Module {args[0]} chargé")
-                else:
-                    print(f"[ERREUR] Le module {args[0]} n'a pas de fichier info.json")
+                print(f"[ERREUR] Le module {args[0]} n'a pas de fichier info.json")
         else:
             print("[ERREUR] Syntaxe : core load <module>")
     

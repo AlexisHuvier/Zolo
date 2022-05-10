@@ -40,23 +40,20 @@ class Zolo:
         self.launched = True
         while self.launched:
             rep = input("\n[Zolo] >>> ")
-            words = rep.split(" ")
-            if words:
+            if words := rep.split(" "):
                 module = self.api.get_module(words[0])
                 if module is None:
                     print("[ERREUR] Module inconnu")
                 elif module.name in self.config.disabled_modules:
                     print("[Zolo] Module désactivé")
-                else:
-                    if len(words) == 1:
-                        print(f"[Zolo] Les commandes du module {module.name} sont :")
-                        for i in module.commands:
-                            print(f"      - {module.prefix} {i}")
+                elif len(words) == 1:
+                    print(f"[Zolo] Les commandes du module {module.name} sont :")
+                    for i in module.commands:
+                        print(f"      - {module.prefix} {i}")
+                elif words[1] in module.commands:
+                    if len(words) == 2:
+                        getattr(module.moduleImport, words[1])(self.api, module, [])
                     else:
-                        if words[1] in module.commands:
-                            if len(words) == 2:
-                                getattr(module.moduleImport, words[1])(self.api, module, [])
-                            else:
-                                getattr(module.moduleImport, words[1])(self.api, module, words[2:])
-                        else:
-                            print("[ERREUR] Commande inconnue")
+                        getattr(module.moduleImport, words[1])(self.api, module, words[2:])
+                else:
+                    print("[ERREUR] Commande inconnue")

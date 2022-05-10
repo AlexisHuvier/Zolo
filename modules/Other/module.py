@@ -31,18 +31,14 @@ class Utilities:
             string: Resultat
         """
         lignes = Utilities.ping_pc(ip)
-        
+
         if lignes[0]:
-            return ip + " => Nom de domaine introuvable"
-        else:
-            for i, ligne in enumerate(lignes):
-                if not ligne:
-                    k = i + 1
-                    break
-            if len(lignes) - k > 3:
-                return ip + " => connecté", lignes[10]
-            else:
-                return ip + " => non connecté"
+            return f"{ip} => Nom de domaine introuvable"
+        for i, ligne in enumerate(lignes):
+            if not ligne:
+                k = i + 1
+                break
+        return (f"{ip} => connecté", lignes[10]) if len(lignes) - k > 3 else f"{ip} => non connecté"
 
 
 class Other:
@@ -92,11 +88,11 @@ class Other:
                 for i in ping[12]:
                     try:
                         int(i)
-                    except:
+                    except Exception:
                         pass
                     else:
                         pingfinal += str(i)
-                print(f"[Other] Ping : {pingfinal} ms")        
+                print(f"[Other] Ping : {pingfinal} ms")
                 pingfinal=int(pingfinal)
                 if pingfinal < 100:
                     print("[Other] Tu as un bon ping")
@@ -106,6 +102,6 @@ class Other:
                     print("[Other] Ton ping est haut, certains jeux multijoueur ne voudront pas de toi")
                 else:
                     print("[Other] IMPOSSIBLE DE JOUER EN MULTI, Désolé")
-            
+
         else:
             print("[ERREUR] Syntaxe : other ping <ip>")

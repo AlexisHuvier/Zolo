@@ -12,11 +12,12 @@ class MeteoUtilities:
         print(f"        - Température : Min {forecast['T']['min']}°C - Max {forecast['T']['max']}°C")
         print(f"        - Humidité : Min {forecast['humidity']['min']}% - Max {forecast['humidity']['max']}%")
         print(f"        - Précipitations : {forecast['precipitation']['24h']}mm")
-        print(f"        - Soleil : Levé à {sun_rise.strftime('%H:%M')} - Couché à {sun_set.strftime('%H:%M')} - UV : {forecast['uv'] if forecast['uv'] else 'Inconnu'}")
+        print(f"        - Soleil : Levé à {sun_rise.strftime('%H:%M')} - Couché à {sun_set.strftime('%H:%M')} - UV : {forecast['uv'] or 'Inconnu'}")
         print(f"        - Appréciation : {forecast['weather12H']['desc']}")
 
 class MeteoFrance:
     client = MeteoFranceClient()
+    utilities = MeteoUtilities()
     
     def info(self, zolo, module, args):
         """
@@ -58,7 +59,7 @@ class MeteoFrance:
         forecast = MeteoFrance.client.get_forecast_for_place(place)
         
         for i in forecast.daily_forecast:
-            MeteoUtilities.print_forecast(i)
+            MeteoFrance.utilities.print_forecast(i)
             
     def daily(self, zolo, module, args):
         """
@@ -71,4 +72,4 @@ class MeteoFrance:
         """
         place = MeteoFrance.client.search_places(" ".join(args))[0]
         forecast = MeteoFrance.client.get_forecast_for_place(place)
-        MeteoUtilities.print_forecast(forecast.today_forecast)
+        MeteoFrance.utilities.print_forecast(forecast.today_forecast)

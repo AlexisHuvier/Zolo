@@ -5,7 +5,7 @@ def request(page, cookies = None):
     return requests.get(page, cookies = cookies) if cookies else requests.get(page)
 
 def get_infos_for(user, cookies, nb_cellules_per_user = 13):
-    soup = bs4.BeautifulSoup(request("https://www.herobrine.fr/index.php?p=members&search="+user, cookies).text, "html5lib")
+    soup = bs4.BeautifulSoup(request(f"https://www.herobrine.fr/index.php?p=members&search={user}", cookies).text, "html5lib")
     temp = soup.find(id="main").find_all("td")
     for i in range(len(temp) // nb_cellules_per_user):
         if temp[nb_cellules_per_user*(i-1)].a.text.strip() == user:

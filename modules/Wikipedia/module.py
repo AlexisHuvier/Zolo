@@ -35,7 +35,7 @@ class Wikipedia:
                 if rep == "y":
                     webbrowser.open(page.url)
                 break
-            except:
+            except Exception:
                 pass
     
         

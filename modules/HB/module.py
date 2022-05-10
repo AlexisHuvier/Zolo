@@ -32,10 +32,9 @@ class HB:
             start = time.time()
             response = parser_hb.connection(account[0].strip(), account[1].strip())
             print(f"[HB] Connexion réussie (Temps : {(time.time() - start):.2f}s)")
-            
+
             start = time.time()
-            player = parser_hb.get_infos_for(perso, response.cookies)
-            if player:
+            if player := parser_hb.get_infos_for(perso, response.cookies):
                 print(f"[HB] Informations recueillies pour {player[0]} ({player[2]}) (Temps : {(time.time() - start):.2f}s) :")
                 print(f"     - Pseudo MC : {player[1]}")
                 print(f"     - Titre : {player[3]}")
