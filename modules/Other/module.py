@@ -1,4 +1,3 @@
-from re import sub
 import subprocess
 import os
 
@@ -69,7 +68,7 @@ class Other:
         else:
             print("[ERREUR] Syntaxe : other open <program>")
         
-    def ping(self, zolo, module, args):
+    def ping(self, zolo, module, args):  # sourcery skip: extract-method
         """
         Ping IP address
 
