@@ -6,7 +6,7 @@ from modules.HB import parser_hb
 
 
 class HB:
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about HB module
 
@@ -17,7 +17,7 @@ class HB:
         """
         print(f"[HB] Version {module.version}")
         
-    def perso(zolo, module, args):
+    def perso(self, zolo, module, args):
         """
         Get Informations about personnage
 

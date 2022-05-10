@@ -9,7 +9,7 @@ class YouTube:
     api_version = "v3"
     youtube =  googleapiclient.discovery.build( api_service_name, api_version, developerKey = api) if api != "" else None
 
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about Math module
 
@@ -21,7 +21,7 @@ class YouTube:
         print(f"[YouTube] Version {module.version}")
         print(f"[YouTube] API Key : {YouTube.api if YouTube.api else 'Aucune'}")
         
-    def searchchannel(zolo, module, args):
+    def searchchannel(self, zolo, module, args):
         """
         Search a channel
 
@@ -49,7 +49,7 @@ class YouTube:
         else:
             print("[ERREUR] YouTube API Key manquante")
         
-    def searchvideo(zolo, module, args):
+    def searchvideo(self, zolo, module, args):
         """
         Search a video
 
@@ -77,7 +77,7 @@ class YouTube:
         else:
             print("[ERREUR] YouTube API Key manquante")
             
-    def stats(zolo, module, args):
+    def stats(self, zolo, module, args):  # sourcery skip: extract-method
         """
         Search a video
 

@@ -3,7 +3,7 @@ import shutil
 
 
 class File:
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about File module
 
@@ -14,7 +14,7 @@ class File:
         """
         print(f"[File] Version {module.version}")
         
-    def cat(zolo, module, args):
+    def cat(self, zolo, module, args):
         """
         Show file content
 
@@ -33,7 +33,7 @@ class File:
         else:
             print("[Erreur] Syntaxe : file cat <file>")
     
-    def ls(zolo, module, args):
+    def ls(self, zolo, module, args):
         """
         List files in directory
 
@@ -53,7 +53,7 @@ class File:
         else:
             print("[Erreur] Syntaxe : file ls <directory>")
             
-    def mkdir(zolo, module, args):
+    def mkdir(self, zolo, module, args):
         """
         Create directory
 
@@ -71,7 +71,7 @@ class File:
         else:
             print("[Erreur] Syntaxe : file mkdir <directory>")
             
-    def rm(zolo, module, args):
+    def rm(self, zolo, module, args):
         """
         Remove file
 
@@ -89,7 +89,7 @@ class File:
         else:
             print("[Erreur] Syntaxe : file rm <file>")
     
-    def rmdir(zolo, module, args):
+    def rmdir(self, zolo, module, args):
         """
         Remove directory
 
@@ -107,7 +107,7 @@ class File:
         else:
             print("[Erreur] Syntaxe : file rmdir <directory>")
     
-    def touch(zolo, module, args):
+    def touch(self, zolo, module, args):
         """
         Create empty file
 

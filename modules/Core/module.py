@@ -2,7 +2,7 @@ import os
 
 
 class Core:
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about Core module
 
@@ -13,7 +13,7 @@ class Core:
         """
         print(f"[Core] Version {module.version}")
 
-    def stop(zolo, module, args):
+    def stop(self, zolo, module, args):
         """
         Stop Zolo
 
@@ -24,7 +24,7 @@ class Core:
         """
         zolo.stop()
 
-    def dismodule(zolo, module, args):
+    def dismodule(self, zolo, module, args):
         """
         Disactivate a module
 
@@ -42,7 +42,7 @@ class Core:
         else:
             print("[ERREUR] Syntaxe : core dismodule <module>")
 
-    def actmodule(zolo, module, args):
+    def actmodule(self, zolo, module, args):
         """
         Activate a module
 
@@ -60,7 +60,7 @@ class Core:
         else:
             print("[ERREUR] Syntaxe : core actmodule <module>")
 
-    def modules(zolo, module, args):
+    def modules(self, zolo, module, args):
         """
         Show list of modules
 
@@ -76,7 +76,7 @@ class Core:
             else:
                 print(f"[Core] - {i.name}")
                 
-    def load(zolo, module, args):
+    def load(self, zolo, module, args):
         """
         Load a module
 
@@ -96,7 +96,7 @@ class Core:
         else:
             print("[ERREUR] Syntaxe : core load <module>")
     
-    def reload(zolo, module, args):
+    def reload(self, zolo, module, args):
         """
         Reload a module
 
@@ -114,7 +114,7 @@ class Core:
         else:
             print("[ERREUR] Syntaxe : core reload <module>")
             
-    def reloadall(zolo, module, args):
+    def reloadall(self, zolo, module, args):
         """
         Reload all modules
 
@@ -129,7 +129,7 @@ class Core:
             print(f"[Core] Module {i.name} rechargé")
         print("[Core] Modules rechargés")
         
-    def clear(zolo, module, args):
+    def clear(self, zolo, module, args):
         """
         Clear terminal zolo
 

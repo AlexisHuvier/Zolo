@@ -4,7 +4,7 @@ wikipedia.set_lang("fr")
 
 
 class Wikipedia:
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about Wikipedia module
 
@@ -15,7 +15,7 @@ class Wikipedia:
         """
         print(f"[Wikipedia] Version {module.version}")
         
-    def random(zolo, module, args):
+    def random(self, zolo, module, args):
         """
         Get random wikipedia page
 
@@ -39,7 +39,7 @@ class Wikipedia:
                 pass
     
         
-    def search(zolo, module, args):
+    def search(self, zolo, module, args):
         """
         Make wikipedia search
 
@@ -53,7 +53,7 @@ class Wikipedia:
         for i in results:
             print(f"            - {i}")
         
-    def page(zolo, module, args):
+    def page(self, zolo, module, args):
         """
         Get wikipedia page of something
 

@@ -23,4 +23,4 @@ class Module:
         temp = importlib.import_module(f"modules.{self.name}.module")
         if reload:
             importlib.reload(temp)
-        self.moduleImport = eval(f"temp.{self.module}")
+        self.moduleImport = eval(f"temp.{self.module}()")

@@ -4,7 +4,7 @@ import os
 
 
 class Utilities:
-    def ping_pc(ip):
+    def ping_pc(self, ip):
         """
         Envoie un ping à une IP
 
@@ -20,7 +20,7 @@ class Utilities:
             return f"Erreur : {err.args[0]}"
         return out.decode("cp850").splitlines()
     
-    def connect_pc(ip):
+    def connect_pc(self, ip):
         """
         Dis si un PC est connecté
 
@@ -46,7 +46,8 @@ class Utilities:
 
 
 class Other:
-    def info(zolo, module, args):
+    utilities = Utilities()
+    def info(self, zolo, module, args):
         """
         Info about Other module
 
@@ -57,7 +58,7 @@ class Other:
         """
         print(f"[Other] Version {module.version}")
         
-    def open(zolo, module, args):
+    def open(self, zolo, module, args):
         """
         Open Program
 
@@ -72,7 +73,7 @@ class Other:
         else:
             print("[ERREUR] Syntaxe : other open <program>")
         
-    def ping(zolo, module, args):
+    def ping(self, zolo, module, args):
         """
         Ping IP address
 
@@ -82,7 +83,7 @@ class Other:
             args (list(string)): List of arguments of command
         """
         if args:
-            rep = Utilities.connect_pc(args[0])
+            rep = Other.utilities.connect_pc(args[0])
             if len(rep) > 2:
                 print(rep)
             else:

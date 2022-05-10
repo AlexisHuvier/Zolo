@@ -1,6 +1,6 @@
 class Todo:
     things = [i.strip() for i in open("modules/Todo/todo.txt", "r").readlines()]
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about Todo module
 
@@ -11,7 +11,7 @@ class Todo:
         """
         print(f"[Todo] Version {module.version}")
     
-    def add(zolo, module, args):
+    def add(self, zolo, module, args):
         """
         Add thing in Todo list
 
@@ -27,7 +27,7 @@ class Todo:
         else:
             print("[Erreur] Syntaxe : todo add <tâche>")
     
-    def list(zolo, module, args):
+    def list(self, zolo, module, args):
         """
         List things in Todo list
 
@@ -43,7 +43,7 @@ class Todo:
         else:
             print("[Todo] Aucune tâche")
 
-    def remove(zolo, module, args):
+    def remove(self, zolo, module, args):
         """
         Remove thing in Todo list
 

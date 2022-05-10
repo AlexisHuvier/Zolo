@@ -4,7 +4,7 @@ import datetime
 
 
 class MeteoUtilities:
-    def print_forecast(forecast):
+    def print_forecast(self, forecast):
         dt = datetime.datetime.fromtimestamp(forecast["dt"])
         sun_rise = datetime.datetime.fromtimestamp(forecast["sun"]["rise"])
         sun_set = datetime.datetime.fromtimestamp(forecast["sun"]["set"])
@@ -18,7 +18,7 @@ class MeteoUtilities:
 class MeteoFrance:
     client = MeteoFranceClient()
     
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about MeteoFrance module
 
@@ -29,7 +29,7 @@ class MeteoFrance:
         """
         print(f"[Meteo] Version {module.version}")
         
-    def picture(zolo, module, args):
+    def picture(self, zolo, module, args):
         """
         Get Picture of the Day
 
@@ -45,7 +45,7 @@ class MeteoFrance:
             webbrowser.open(potd.image_hd_url)
         
         
-    def weekly(zolo, module, args):
+    def weekly(self, zolo, module, args):
         """
         Get weekly information about city
 
@@ -60,7 +60,7 @@ class MeteoFrance:
         for i in forecast.daily_forecast:
             MeteoUtilities.print_forecast(i)
             
-    def daily(zolo, module, args):
+    def daily(self, zolo, module, args):
         """
         Get daily information about city
 

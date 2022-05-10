@@ -2,7 +2,7 @@ from math import *
 
 
 class Math:
-    def info(zolo, module, args):
+    def info(self, zolo, module, args):
         """
         Info about Math module
 
@@ -13,7 +13,7 @@ class Math:
         """
         print(f"[Math] Version {module.version}")
 
-    def eval(zolo, module, args):
+    def eval(self, zolo, module, args):
         """
         Make a calcul
 
@@ -27,7 +27,7 @@ class Math:
         except Exception as e:
             print(f"[ERREUR] {e}")
 
-    def imc(zolo, module, args):
+    def imc(self, zolo, module, args):
         """
         Calculate IMC
 
