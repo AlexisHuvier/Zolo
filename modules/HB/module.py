@@ -17,7 +17,7 @@ class HB:
         """
         print(f"[HB] Version {module.version}")
         
-    def perso(self, zolo, module, args):
+    def perso(self, zolo, module, args):  # sourcery skip: extract-method
         """
         Get Informations about personnage
 
