@@ -1,3 +1,4 @@
+import contextlib
 import wikipedia
 import webbrowser
 wikipedia.set_lang("fr")
@@ -25,7 +26,7 @@ class Wikipedia:
             args (list(string)): List of arguments of command
         """
         while True:
-            try:
+            with contextlib.suppress(Exception):
                 name = wikipedia.random()
                 page = wikipedia.page(name)
                 print("[Wikipedia] Voici les informations de la page random :")
@@ -35,8 +36,6 @@ class Wikipedia:
                 if rep == "y":
                     webbrowser.open(page.url)
                 break
-            except Exception:
-                pass
     
         
     def search(self, zolo, module, args):
