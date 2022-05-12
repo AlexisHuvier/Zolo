@@ -96,7 +96,11 @@ class Osu:
         if args:
             if user := self.api.user(args[0]):
                 print(f"[Osu] Activité récente de {user.username} ({user.id})")
-                for i in self.api.user_recent_activity(args[0]):
+                if len(args) >= 2:
+                    ura = self.api.user_recent_activity(args[0], int(args[1]))
+                else:
+                    ura = self.api.user_recent_activity(args[0])
+                for i in ura:
                     match i.type :
                         case EventType.ACHIEVEMENT:
                             print(f"[Osu] Achievement recu : {i.achievement} ({i.created_at.strftime('%d/%m/%Y à %H:%M')})")
