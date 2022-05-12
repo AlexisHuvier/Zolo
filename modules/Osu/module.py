@@ -103,7 +103,7 @@ class Osu:
                 for i in ura:
                     match i.type :
                         case EventType.ACHIEVEMENT:
-                            print(f"[Osu] Achievement recu : {i.achievement} ({i.created_at.strftime('%d/%m/%Y à %H:%M')})")
+                            print(f"[Osu] Achievement recu : {i.achievement.name} : {i.achievement.description} ({i.created_at.strftime('%d/%m/%Y à %H:%M')})")
                         case EventType.BEATMAP_PLAYCOUNT:
                             print(f"[Osu] Beatmap {i.beatmap.title} joué {i.count} fois ({i.created_at.strftime('%d/%m/%Y à %H:%M')})")
                         case EventType.BEATMAPSET_APPROVE:
