@@ -133,4 +133,29 @@ class Osu:
             else:
                 print(f"[Osu] Utilisateur '{args[0]}' introuvable")
         else:
-            print("[Erreur] Syntaxe : osu user <id>")
+            print("[Erreur] Syntaxe : osu user <id> [<limit>]")
+            
+    def scores(self, zolo, module, args):
+        """
+        Get user recent activity
+
+        Args:
+            zolo (Zolo): Zolo
+            module (Module): Current Module
+            args (list(string)): List of arguments of command
+        """
+        if args:
+            if user := self.api.user(args[0]):
+                print(f"[Osu] Scores de {user.username} ({user.id})")
+                if len(args) >= 2:
+                    scores = self.api.user_scores(args[0], limit=int(args[1]))
+                else:
+                    scores = self.api.user_scores(args[0])
+                for i in scores:
+                    print(f"[Osu] {i.id} - {i.beatmapset.title} ({i.beatmap.mode})")
+                    print(f"      - Score : {i.score} - Rang : {i.rank} - PP : {i.pp}")
+                    print(f"      - 50 : {i.statistics.count_50} - 100 : {i.statistics.count_100} - 300 : {i.statistics.count_300} - 300g : {i.statistics.count_geki} - 300k : {i.statistics.count_katu} - CS : {i.statistics.count_miss}")        
+            else:
+                print(f"[Osu] Utilisateur '{args[0]}' introuvable")
+        else:
+            print("[Erreur] Syntaxe : osu user <id> [<limit>]")
