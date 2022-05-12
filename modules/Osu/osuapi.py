@@ -21,3 +21,6 @@ class OsuAPI:
             return self.api.user_scores(id, type, include_files, mode, limit, offset)
         else:
             return self.api.user_scores(id, type, include_files, limit=limit, offset=offset)
+    
+    def search(self, query, mode=SearchMode.USERS, page = 0):
+        return self.api.search(mode, query, page)

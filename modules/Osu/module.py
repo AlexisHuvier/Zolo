@@ -159,3 +159,22 @@ class Osu:
                 print(f"[Osu] Utilisateur '{args[0]}' introuvable")
         else:
             print("[Erreur] Syntaxe : osu user <id> [<limit>]")
+    
+    def search(self, zolo, module, args):
+        """
+        Search User
+
+        Args:
+            zolo (Zolo): Zolo
+            module (Module): Current Module
+            args (list(string)): List of arguments of command
+        """
+        if args:
+            if users := self.api.search(args[0]):
+                print(f"[Osu] Résultats pour '{args[0]}' :")
+                for i in users.users.data:
+                    print(f"      - {i.username} ({i.id})")
+            else:
+                print(f"[Osu] Utilisateur '{args[0]}' introuvable")
+        else:
+            print("[Erreur] Syntaxe : osu user <id> [<limit>]")
